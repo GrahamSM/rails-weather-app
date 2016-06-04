@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'weather#index'
 
-  get 'weather/validate'
+  get 'weather/get_data'
 
   resources :weather
 

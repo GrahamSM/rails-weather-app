@@ -91,3 +91,12 @@ input[type="submit"]:hover {
   margin:5px;
   padding:5px;
 }
+
+#map {
+  height: 50%;
+  width: 50%;
+}
+
+.weather-show{
+  width:50%;
+}

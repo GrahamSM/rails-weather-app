@@ -1,2 +1,29 @@
-<h1><%=@weather.city%></h1>
-<h1><%=@weather.temperature_string%></h1>
+<div id = "map" style="width:500px;height:500px;"></div>
+<div class="weather-show" id='<%=@weather.id%>'>
+  <h1><%=@weather.city%></h1>
+  <h1><%=@weather.temperature_string%></h1>
+</div>
+
+
+<script>
+  function initMap() {
+    $.ajax({
+      url: '/weather/get_data',
+      type: 'GET',
+      data: {id: $('.weather-show').attr('id')},
+      dataType: 'json',
+      success: function(weather_data){
+        var mapDiv = document.getElementById('map');
+        var latitude = parseFloat(weather_data.lat);
+        var longitude = parseFloat(weather_data.lon);
+        window.map = new google.maps.Map(mapDiv, {
+          center: {lat: latitude, lng: longitude},
+          zoom: 8
+        });
+      }
+    })
+  }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIFyDOCrUUSJSa_8mpTbZntGNm8KoeijE&callback=initMap"
+async defer></script>
