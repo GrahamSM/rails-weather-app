@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603204004) do
+ActiveRecord::Schema.define(version: 20160604190019) do
 
   create_table "users", force: :cascade do |t|
     t.string   "country"
@@ -25,10 +25,18 @@ ActiveRecord::Schema.define(version: 20160603204004) do
     t.string   "country"
     t.string   "city"
     t.date     "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "lat"
     t.string   "lon"
+    t.string   "temp_c"
+    t.string   "temp_f"
+    t.string   "relative_humidity"
+    t.string   "wind_string"
+    t.string   "visibility_km"
+    t.string   "wind_kph"
+    t.string   "temperature_string"
+    t.string   "observation_time"
   end
 
 end
