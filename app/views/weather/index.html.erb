@@ -19,29 +19,37 @@
 </div>
 
 <script>
-// INITIAL SEARCH SCRIPT
 function callback(results){
   $('.home-div').empty(); //Empty previous search results
   cities = results.RESULTS;
   for (var i = 0; i < cities.length; i++){
+    // PARSE cities[i] to get lat lon, make ajax call to weather API, POST to create
+    $.ajaxSetup({jsonp: 'getJson'});
     $.ajax({
-      type: 'POST',
-      url: '/weather',
-      data: cities[i],
+      type: 'GET',
+      url: 'http://api.wunderground.com/api/fbbc6a704fdca056/conditions/q/' + 'zmw:' + cities[i].zmw + '.json',
       dataType: 'json',
-      success: function(weather){
-        var source = $("#city-option").html(); //Render Handlebars template city-option
-        var template = Handlebars.compile(source);
-        var context = {city_name: weather.city, weather_id: weather.id};
-        var html = template(context);
-        $('.home-div').append(html);
-      },
-      error: function(err){
-        alert(err.message);
-      }
-    });
-  }
-
+    }).done(function(response){
+      $.ajax({
+        type: 'POST',
+        url: '/weather',
+        data: response,
+        dataType: 'json',
+        success: function(weather){
+          var source = $("#city-option").html(); //Render Handlebars template city-option
+          var template = Handlebars.compile(source);
+          var context = {city_name: weather.city, weather_id: weather.id};
+          var html = template(context);
+          $('.home-div').append(html);
+        },
+        error: function(err){
+          alert(err.message);
+        }
+      });
+    }).error(function(err){
+      alert(err.message);
+    })
+  }//
 }
 
 $('.weather-search').on('submit', function(event){
@@ -54,14 +62,10 @@ $('.weather-search').on('submit', function(event){
     url: 'http://autocomplete.wunderground.com/aq',
     data: {
       query: $query,
-      cb: 'callback'
+      cb: 'callback'   ////CASE #1 THIS WORKS
     },
     dataType: 'jsonp',
   })
 });
-// END INITIAL SEARCH SCRIPT
-// BEGIN CITY SELECT SCRIPT
-
-// END CITY SELECT SCRIPT
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
