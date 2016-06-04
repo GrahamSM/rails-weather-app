@@ -1,6 +1,6 @@
-class AddWeather < ActiveRecord::Migration
+class CreateWeathers < ActiveRecord::Migration
   def change
-    create_table :weather do |t|
+    create_table :weathers do |t|
       t.string :country
       t.string :city
       t.date :time

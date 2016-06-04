@@ -13,8 +13,81 @@
  *= require_tree .
  *= require_self
  */
+ .body {
+   display: -webkit-box;
+   display: -moz-box;
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   display: flex;
+
+   -webkit-flex-flow: row wrap;
+   justify-content: space-around;
+ }
 
 .title{
   width:25%;
   margin:auto;
+}
+
+.weather-search{
+  background: rgba(200, 200, 200, 0.4);
+  border: 1px solid rgba(150, 150, 150, 0.5);
+  border-radius: 4px;
+  margin: 50px auto 0;
+  padding: 10px;
+  width: 240px;
+}
+
+input {
+  display: block;
+  font-size: 20px;
+  margin: 5px auto;
+  padding: 10px;
+}
+
+input {
+  opacity: 0.5;
+}
+
+input:hover,
+input:focus {
+  opacity: 1;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+}
+
+input[type="submit"] {
+  appearance: none;
+  background: linear-gradient(#58f, #37f 70%, #46f);
+  border: 1px solid #33f;
+  border-radius: 4px;
+  color: #eee;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background: linear-gradient(#79f, #37f 70%, #46f);
+}
+
+
+.display-contact{
+  border: 0.5px;
+  max-height: 350px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 3px solid;
+  border-color: #00c2ff;
+  width:100%%;
+  margin:auto;
+}
+
+.display-contact-inner{
+  margin:5px;
+  padding:5px;
 }

@@ -1,3 +1,60 @@
 <div class="header">
   <h1 class="title">Weather Application</h1>
 </div>
+
+<form class="weather-search" id="city-state-form">
+  <input type="text" name="city" placeholder="City Name"></br>
+  <input type="submit" value="Submit"></input>
+</form>
+
+<script id="city-option" type="text/x-handlebars-template">
+  <div class="display-city">
+    <div class="display-city-inner">
+      <h2 id="city-name">{{city_name}}</h2>
+    </div>
+  </div>
+</script>
+
+<div class='home-div'>
+</div>
+
+<script>
+function callback(results){
+  cities = results.RESULTS;
+  for (var i = 0; i < cities.length; i++){
+    $.ajax({
+      type: 'POST',
+      url: '/weather',
+      data: cities[i],
+      dataType: 'json',
+      success: function(weather){
+        var source = $("#city-option").html();
+        var template = Handlebars.compile(source);
+        var context = {city_name: weather.city};
+        var html = template(context);
+        $('.home-div').append(html);
+      },
+      error: function(err){
+        alert(err.message);
+      }
+    });
+  }
+}
+
+$('.weather-search').on('submit', function(event){
+  event.preventDefault();
+  $.ajaxSetup({jsonp: 'getJson'});
+  var input_data = document.getElementById('city-state-form');
+  var $query = input_data.elements[0].value;
+  $.ajax({
+    type: 'GET',
+    url: 'http://autocomplete.wunderground.com/aq',
+    data: {
+      query: $query,
+      cb: 'callback'
+    },
+    dataType: 'jsonp',
+  })
+});
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
