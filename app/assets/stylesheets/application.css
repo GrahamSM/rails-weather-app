@@ -73,7 +73,7 @@ input[type="submit"]:hover {
 }
 
 
-.display-contact{
+.display-city{
   border: 0.5px;
   max-height: 350px;
   padding-bottom: 10px;
@@ -82,12 +82,12 @@ input[type="submit"]:hover {
   padding-top: 10px;
   margin-bottom: 10px;
   border-bottom: 3px solid;
-  border-color: #00c2ff;
+  border-color: #3498db;
   width:100%%;
   margin:auto;
 }
 
-.display-contact-inner{
+.display-city-inner{
   margin:5px;
   padding:5px;
 }
