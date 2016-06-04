@@ -5,6 +5,11 @@ class WeatherController < ApplicationController
   end
 
   def index
+
+  end
+
+  def show
+    @weather = Weather.find(params[:id])
   end
 
   def create
