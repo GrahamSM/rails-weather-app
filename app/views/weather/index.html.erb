@@ -19,6 +19,24 @@
 </div>
 
 <script>
+// BEGIN INITIAL WEATHER SEARCH
+$('.weather-search').on('submit', function(event){
+  event.preventDefault();
+  $.ajaxSetup({jsonp: 'getJson'});
+  var input_data = document.getElementById('city-state-form');
+  var $query = input_data.elements[0].value;
+  $.ajax({
+    type: 'GET',
+    url: 'http://autocomplete.wunderground.com/aq',
+    data: {
+      query: $query,
+      cb: 'callback'   ////CASE #1 THIS WORKS
+    },
+    dataType: 'jsonp',
+  })
+});
+// END INITIAL WEATHER SEARCH
+// WEATHER SEARCH CALLBACK
 function callback(results){
   $('.home-div').empty(); //Empty previous search results
   cities = results.RESULTS;
@@ -51,21 +69,6 @@ function callback(results){
     })
   }//
 }
-
-$('.weather-search').on('submit', function(event){
-  event.preventDefault();
-  $.ajaxSetup({jsonp: 'getJson'});
-  var input_data = document.getElementById('city-state-form');
-  var $query = input_data.elements[0].value;
-  $.ajax({
-    type: 'GET',
-    url: 'http://autocomplete.wunderground.com/aq',
-    data: {
-      query: $query,
-      cb: 'callback'   ////CASE #1 THIS WORKS
-    },
-    dataType: 'jsonp',
-  })
-});
+// END WEATHER SEARCH CALLBACK
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
