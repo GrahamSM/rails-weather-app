@@ -1,11 +1,17 @@
-<div id = "map" style="width:500px;height:500px;"></div>
-<div class="weather-show" id='<%=@weather.id%>'>
-  <h1><%=@weather.city%></h1>
-  <h1><%=@weather.temperature_string%></h1>
+
+<div class= "weather-content">
+  <div id = "map" style="width:500px;height:500px;"></div>
+  <div class="weather-show" id='<%=@weather.id%>'>
+    <h1><%=@weather.city%></h1>
+    <p><strong>Temperature:</strong> <%=@weather.temperature_string%></p>
+    <p><strong>Relative humidity:</strong> <%=@weather.relative_humidity%></p>
+    <p><strong>Wind:</strong> <%=@weather.wind_string%></p>
+    <p><em><%=@weather.observation_time%></em></p>
+  </div>
 </div>
 
-
 <script>
+
   function initMap() {
     $.ajax({
       url: '/weather/get_data',
