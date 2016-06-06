@@ -17,6 +17,19 @@
  html *{
    font-family:roboto;
  }
+ a{
+   color: white;
+ }
+
+ header{
+   font-family:roboto;
+   width:100%;
+   height:75px;
+   border-radius: 5px;
+   border-top: solid black;
+   border-bottom: solid black;
+ }
+
  .body {
    display: -webkit-box;
    display: -moz-box;
@@ -29,15 +42,15 @@
  }
 
 .title{
-  width:25%;
-  margin:auto;
+  display: inline-block;
+  margin: 10px 0px 0px 510px;
 }
 
 .weather-search{
   background: rgba(200, 200, 200, 0.4);
   border: 1px solid rgba(150, 150, 150, 0.5);
   border-radius: 4px;
-  margin: 50px auto 0;
+  margin: 10px auto;
   padding: 10px;
   width: 240px;
 }
@@ -80,7 +93,9 @@ header{
   font-family:roboto;
   width:100%;
   height:75px;
-  background-color:#ecf0f1;
+  border-radius: 5px;
+  border-top: solid black;
+  border-bottom: solid black;
 }
 
 .footer{
@@ -110,8 +125,13 @@ header{
   padding:5px;
 }
 
+.display-city-inner a{
+  color: black;
+  text-decoration: none;
+}
+
 .weather-content{
-  margin-left: 50px;
+  margin: 10px 0px 0px 50px;
 }
 
 #map {
@@ -143,5 +163,14 @@ header{
   line-height: 70px;
   text-align: center;
   background:#3498db;
+  border-radius:5px;
+  text: white;
+}
 
+a{
+  color: white;
+}
+
+.home-btn:hover{
+  background: #2980b9;
 }
